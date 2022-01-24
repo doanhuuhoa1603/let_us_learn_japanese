@@ -5,13 +5,6 @@ class Word extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Từ vựng'),
-      ),
-      body: SafeArea(
-        child: Text('Từ vựng'),
-      ),
-    );
+    return Text('Từ vựng');
   }
 }

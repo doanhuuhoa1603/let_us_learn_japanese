@@ -1,18 +1,56 @@
 import 'package:flutter/material.dart';
+import '../models/navigation_model.dart';
+import 'package:provider/provider.dart';
 
-import 'home/home.dart';
+class WideApp extends StatefulWidget {
+  final AppBar appBar;
 
-class WideApp extends StatelessWidget {
-  const WideApp({Key? key}) : super(key: key);
+  const WideApp({required this.appBar, Key? key}) : super(key: key);
 
   @override
+  State<WideApp> createState() => _WideAppState();
+}
+
+class _WideAppState extends State<WideApp> {
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: const [
-        Text('This is wide app'),
-        Home()
-      ]
+    final mediaQuery = MediaQuery.of(context);
+    return SafeArea(
+      child: Scaffold(
+        appBar: widget.appBar,
+        body: Row(
+          children: <Widget>[
+            NavigationRail(
+              extended: true,
+              minExtendedWidth: mediaQuery.size.width * 0.25,
+              selectedIndex:
+                  Provider.of<NavigationModel>(context).currentTabIndex,
+              onDestinationSelected: (index) =>
+                  Provider.of<NavigationModel>(context, listen: false)
+                      .changeIndex(index),
+              labelType: NavigationRailLabelType.none,
+              destinations:
+                  Provider.of<NavigationModel>(context).tabItems.map((item) {
+                return NavigationRailDestination(
+                  icon: item['icon'],
+                  selectedIcon: item['selectedIcon'],
+                  label: Text(item['label']),
+                );
+              }).toList(),
+            ),
+            const VerticalDivider(thickness: 1, width: 1),
+            // This is the main content.
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Provider.of<NavigationModel>(context).currentTabWidget,
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import './widgets/random/random.dart';
-import './widgets/grammar/grammar.dart';
-import './widgets/word/word.dart';
+import 'package:provider/provider.dart';
+// import './widgets/random/random.dart';
+// import './widgets/grammar/grammar.dart';
+// import './widgets/word/word.dart';
+import './models/navigation_model.dart';
 import './widgets/app.dart';
 
 void main() {
@@ -12,7 +14,14 @@ void main() {
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     // TO DO: Thay doi App title
   }
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => NavigationModel())
+      ],
+      child: const MyApp()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,9 +39,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const App(),
-        '/grammar': (context) => const Grammar(),
-        '/word': (context) => const Word(),
-        '/random': (context) => const Random(),
+        // '/grammar': (context) => const Grammar(),
+        // '/word': (context) => const Word(),
+        // '/random': (context) => const Random(),
       },
     );
   }

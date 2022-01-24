@@ -5,13 +5,6 @@ class Grammar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Ngữ pháp'),
-      ),
-      body: SafeArea(
-        child: Text('Ngữ pháp'),
-      ),
-    );
+    return Text('Ngữ pháp');
   }
 }

@@ -5,13 +5,6 @@ class Random extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Random'),
-      ),
-      body: SafeArea(
-        child: Text('Random'),
-      ),
-    );
+    return Text('Random');
   }
 }

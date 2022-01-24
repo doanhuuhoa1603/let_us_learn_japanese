@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 class NarrowApp extends StatefulWidget {
   final AppBar appBar;
 
-  NarrowApp({required this.appBar, Key? key}) : super(key: key);
+  const NarrowApp({required this.appBar, Key? key}) : super(key: key);
 
   @override
   State<NarrowApp> createState() => _NarrowAppState();

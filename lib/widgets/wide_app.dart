@@ -21,22 +21,22 @@ class _WideAppState extends State<WideApp> {
         body: Row(
           children: <Widget>[
             NavigationRail(
-              extended: true,
-              minExtendedWidth: mediaQuery.size.width * 0.25,
+              extended: mediaQuery.size.width > 700,
+              minExtendedWidth: mediaQuery.size.width * 0.25 < 300 ? mediaQuery.size.width * 0.25 : 300,
               selectedIndex:
                   Provider.of<NavigationModel>(context).currentTabIndex,
               onDestinationSelected: (index) =>
                   Provider.of<NavigationModel>(context, listen: false)
                       .changeIndex(index),
               labelType: NavigationRailLabelType.none,
-              destinations:
-                  Provider.of<NavigationModel>(context).tabItems.map((item) {
-                return NavigationRailDestination(
-                  icon: item['icon'],
-                  selectedIcon: item['selectedIcon'],
-                  label: Text(item['label']),
-                );
-              }).toList(),
+              destinations: Provider.of<NavigationModel>(context).tabItems.map((item) {
+                  return NavigationRailDestination(
+                    icon: Tooltip(message: item['label'], child: item['icon'],),
+                    selectedIcon: item['selectedIcon'],
+                    label: Text(item['label']),
+                  );
+                }
+              ).toList(),
             ),
             const VerticalDivider(thickness: 1, width: 1),
             // This is the main content.

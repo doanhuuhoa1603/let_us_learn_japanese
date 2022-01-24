@@ -5,6 +5,6 @@ class Random extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Random');
+    return const Text('Random');
   }
 }

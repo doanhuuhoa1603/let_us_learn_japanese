@@ -5,6 +5,6 @@ class Grammar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Ngữ pháp');
+    return const Text('Ngữ pháp');
   }
 }
